@@ -68,6 +68,7 @@ def render_world():
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
     for p in points:
         arrow.draw(p[0], p[1])
+    arrow.draw(mx, my)
     character.clip_draw(frame * 100, 100 * action, 100, 100, cx, cy)
     update_canvas()
 
@@ -87,6 +88,8 @@ def update_world():
             cx, cy = hx, hy     #캐릭터 위치를 목적지 위치와 강제로 정확히 일치시킴
             del points[0]   #목표지점에 왔기 때문에, 더이상 필요없는 점을 삭제
             set_new_target_arrow()
+    elif points:  # 목표 지점이 없는 상황에서, 새로운 목표 지점이 생기면
+        set_new_target_arrow()
 
 open_canvas(TUK_WIDTH, TUK_HEIGHT)
 hide_cursor()
